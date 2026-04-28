@@ -1,3 +1,6 @@
+![New code render](New_Code_Render.png)
+![Old code render](Old_Code_Render.png)
+
 # Butterfly Nebula Blender Generator
 
 A Blender Python project for generating a stylized butterfly nebula using source points, VDB volumes, volumetric materials, a star field, a central star, and compositor-based grading.
