@@ -1,0 +1,130 @@
+# Butterfly Nebula Blender Generator
+
+A Blender Python project for generating a stylized butterfly nebula using source points, VDB volumes, volumetric materials, a star field, a central star, and compositor-based grading.
+
+This project currently keeps **two code versions**:
+
+- `Old_CodeNebula.py` — older temporary version with a stronger, clearer centre/waist feel and more obvious outward flow.
+- `main.py` — newer pinkish version with softer volumetrics, improved color grading, pink/purple edge separation, and a more polished overall look.
+
+## Purpose
+
+This project is an iterative study of how to balance:
+
+- a strong energetic core,
+- believable lobe structure,
+- soft volumetric haze,
+- directional outward flow,
+- and aesthetic color grading.
+
+The current goal is to combine the **old version’s centre energy** with the **new version’s pinkish grading and smoother volumetric shading**.
+
+## Files
+
+### `main.py`
+The current “pinkish” render pipeline.
+
+Main characteristics:
+- softer haze-driven look,
+- pink/purple/blue palette,
+- reduced ion dominance,
+- subtler dust contribution,
+- improved compositor grading,
+- cleaner star color variation.
+
+### `Old_CodeNebula.py`
+Temporary archived version kept for reference.
+
+Main characteristics:
+- tighter and more readable waist/core,
+- clearer sense that material is being ejected from the centre,
+- stronger contrast,
+- more aggressive structure,
+- less refined color grading than the new version.
+
+## Pipeline
+
+Both versions follow roughly the same overall pipeline:
+
+1. Bootstrap the Blender scene and Cycles settings.
+2. Build a source point cloud with custom point attributes.
+3. Generate butterfly-shaped lobe data.
+4. Write VDB grids for ion gas, dust, and haze (when `openvdb` is available).
+5. Import the VDB volumes into Blender.
+6. Build volumetric materials.
+7. Add camera, stars, and central star.
+8. Apply compositor grading.
+9. Render using preview, lookdev, or final stage settings.
+
+## Volume layers
+
+The nebula is split into three main volume layers:
+
+- **Ion gas** — brighter internal emission structure.
+- **Dust** — darker absorbing component near the waist/core regions.
+- **Haze** — the main soft glowing body of the nebula.
+
+## Old vs New
+
+### Old temporary version
+Use `Old_CodeNebula.py` if you want:
+- a stronger central engine feel,
+- tighter waist definition,
+- more visible outward direction,
+- more contrast and structural energy.
+
+### New pinkish version
+Use `main.py` if you want:
+- softer and prettier color treatment,
+- pink/purple edge separation,
+- smoother haze-based rendering,
+- less harsh internal structure,
+- a more polished final grade.
+
+## Recommended merge direction
+
+The intended merge path is:
+
+- keep the **field generation** and **VDB deposition feel** from `Old_CodeNebula.py`,
+- keep the **materials**, **color grading**, and **compositor look** from `main.py`.
+
+In short:
+
+- **old geometry / old core feel**
+- **new shading / new pinkish grading**
+
+## Requirements
+
+- Blender with Python scripting support
+- `bpy`
+- `mathutils`
+- optional `openvdb` Python module for writing VDB files
+
+If `openvdb` is not available, the scene setup still runs, but VDB export is skipped and external VDB generation is required.
+
+## Rendering stages
+
+The scripts define three render stages:
+
+- `preview`
+- `lookdev`
+- `final`
+
+These adjust samples, resolution percentage, and volume quality settings.
+
+## Notes
+
+- Cache files are written to a cache directory.
+- Unique VDB filenames are generated per run to avoid cache collisions.
+- The current project is still in an experimental tuning phase.
+- File names and values may continue changing as the look is refined.
+
+## Status
+
+Current status:
+- `Old_CodeNebula.py` is kept temporarily for centre/structure reference.
+- `main.py` is the current pinkish working version.
+- The next target is a merged version that preserves the old centre feel while keeping the new grading.
+
+---
+Built for iterative visual development of a stylized Hubble-like butterfly nebula render in Blender.
